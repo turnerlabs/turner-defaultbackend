@@ -9,10 +9,10 @@ RUN go get -v github.com/golang/dep/cmd/dep
 RUN dep ensure -v
 
 # compile server
-RUN GOOS=linux GOARCH=386 go build -v -o app .
+RUN CGO_ENABLED=0 GOOS=linux go build -v -o app .
 
 ### run
-FROM alpine:3.6
+FROM scratch
 WORKDIR /root/
 COPY --from=build /go/src/github.com/turnerlabs/turner-defaultbackend/app .
 CMD ["./app"]
