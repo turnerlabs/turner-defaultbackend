@@ -1,0 +1,10 @@
+version: "2"
+services:
+  defaultbackend:
+    build: .
+    image: quay.io/turner/turner-defaultbackend:0.1.0
+    ports:
+    - 80:8080
+    environment:      
+      HEALTHCHECK: /healthz
+      PORT: 8080
