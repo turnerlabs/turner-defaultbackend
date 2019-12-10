@@ -18,7 +18,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.HandleFunc("/healthz", healthCheck)
+	r.HandleFunc(getenv("HEALTHCHECK", "/healthz"), healthCheck)
 	r.HandleFunc("/{blah:.*}", defaultRoute)
 	r.HandleFunc("/", defaultRoute)
 
